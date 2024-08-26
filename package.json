@@ -1,0 +1,38 @@
+{
+  "name": "hana_db_hotel",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "@sap/cds": "^8",
+    "@sap/cds-odata-v2-adapter-proxy": "^1",
+    "@sap/hana-client": "^2",
+    "@sap/xssec": "^4.2.1",
+    "express": "^4"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-db_hotel_fiori": "cds watch --open db_hotel_fiori/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy hana_db_hotel --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "cds": {
+    "[development]": {
+      "requires": {
+        "db": "sql"
+      }
+    },
+    "requires": {
+      "auth": "dummy",
+      "db": "hana-cloud"
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  },
+  "sapux": [
+    "app/db_hotel_fiori"
+  ]
+}

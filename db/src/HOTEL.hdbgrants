@@ -1,0 +1,14 @@
+{
+    "hana_db_hotel-db-HOTEL": {
+        "object_owner": {
+            "roles": [
+                "hana_db_hotel_HOTEL::EXTERNAL_ACCESS_G"
+            ]
+        },
+        "application_user": {
+            "roles": [
+                "hana_db_hotel_HOTEL::EXTERNAL_ACCESS"
+            ]
+        }
+    }
+}

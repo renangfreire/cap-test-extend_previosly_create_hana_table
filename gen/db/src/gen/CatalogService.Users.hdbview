@@ -1,0 +1,4 @@
+VIEW CatalogService_Users AS SELECT
+  Users_0.id,
+  Users_0.name
+FROM hana_db_hotel_db_MyDb_Users AS Users_0

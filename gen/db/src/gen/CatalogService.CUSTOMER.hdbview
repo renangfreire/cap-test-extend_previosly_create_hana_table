@@ -1,0 +1,8 @@
+VIEW CatalogService_CUSTOMER AS SELECT
+  CUSTOMER_0.cno,
+  CUSTOMER_0.title,
+  CUSTOMER_0.firstname,
+  CUSTOMER_0.name,
+  CUSTOMER_0.zip,
+  CUSTOMER_0.address
+FROM hana_db_hotel_db_HOTEL_CUSTOMER AS CUSTOMER_0

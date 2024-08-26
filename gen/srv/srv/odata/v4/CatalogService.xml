@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="CITY" EntityType="CatalogService.CITY"/>
+        <EntitySet Name="CUSTOMER" EntityType="CatalogService.CUSTOMER"/>
+        <EntitySet Name="HOTEL" EntityType="CatalogService.HOTEL"/>
+        <EntitySet Name="RESERVATION" EntityType="CatalogService.RESERVATION"/>
+        <EntitySet Name="ROOM" EntityType="CatalogService.ROOM"/>
+        <EntitySet Name="Users" EntityType="CatalogService.Users"/>
+      </EntityContainer>
+      <EntityType Name="CITY">
+        <Key>
+          <PropertyRef Name="zip"/>
+        </Key>
+        <Property Name="zip" Type="Edm.String" MaxLength="5" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="state" Type="Edm.String" MaxLength="2" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="CUSTOMER">
+        <Key>
+          <PropertyRef Name="cno"/>
+        </Key>
+        <Property Name="cno" Type="Edm.Decimal" Precision="4" Scale="0" Nullable="false"/>
+        <Property Name="title" Type="Edm.String" MaxLength="7"/>
+        <Property Name="firstname" Type="Edm.String" MaxLength="20"/>
+        <Property Name="name" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="zip" Type="Edm.String" MaxLength="5"/>
+        <Property Name="address" Type="Edm.String" MaxLength="40" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="HOTEL">
+        <Key>
+          <PropertyRef Name="hno"/>
+        </Key>
+        <Property Name="hno" Type="Edm.Decimal" Precision="4" Scale="0" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="zip" Type="Edm.String" MaxLength="5"/>
+        <Property Name="address" Type="Edm.String" MaxLength="40" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="RESERVATION">
+        <Key>
+          <PropertyRef Name="rno"/>
+        </Key>
+        <Property Name="rno" Type="Edm.Decimal" Precision="4" Scale="0" Nullable="false"/>
+        <Property Name="cno" Type="Edm.Decimal" Precision="4" Scale="0"/>
+        <Property Name="hno" Type="Edm.Decimal" Precision="4" Scale="0"/>
+        <Property Name="type" Type="Edm.String" MaxLength="6"/>
+        <Property Name="arrival" Type="Edm.Date" Nullable="false"/>
+        <Property Name="departure" Type="Edm.Date" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="ROOM">
+        <Key>
+          <PropertyRef Name="hno"/>
+          <PropertyRef Name="type"/>
+        </Key>
+        <Property Name="hno" Type="Edm.Decimal" Precision="4" Scale="0" Nullable="false"/>
+        <Property Name="type" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="free" Type="Edm.Decimal" Precision="3" Scale="0"/>
+        <Property Name="price" Type="Edm.Decimal" Precision="6" Scale="2"/>
+      </EntityType>
+      <EntityType Name="Users">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name" Type="Edm.String"/>
+      </EntityType>
+      <Annotations Target="CatalogService.HOTEL">
+        <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="hno"/>
+                  <PropertyValue Property="Value" Path="hno"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="name"/>
+                  <PropertyValue Property="Value" Path="name"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="zip"/>
+                  <PropertyValue Property="Value" Path="zip"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Label" String="address"/>
+                  <PropertyValue Property="Value" Path="address"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Facets">
+          <Collection>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="GeneratedFacet1"/>
+              <PropertyValue Property="Label" String="General Information"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Label" String="hno"/>
+              <PropertyValue Property="Value" Path="hno"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Label" String="name"/>
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Label" String="zip"/>
+              <PropertyValue Property="Value" Path="zip"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Label" String="address"/>
+              <PropertyValue Property="Value" Path="address"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/id">
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,6 @@
+VIEW CatalogService_HOTEL AS SELECT
+  HOTEL_0.hno,
+  HOTEL_0.name,
+  HOTEL_0.zip,
+  HOTEL_0.address
+FROM hana_db_hotel_db_HOTEL_HOTEL AS HOTEL_0

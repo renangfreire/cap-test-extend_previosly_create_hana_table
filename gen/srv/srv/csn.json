@@ -1,0 +1,447 @@
+{
+  "namespace": "hana_db_hotel.db",
+  "definitions": {
+    "hana_db_hotel.db.HOTEL": {
+      "kind": "context"
+    },
+    "hana_db_hotel.db.HOTEL.CITY": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "elements": {
+        "zip": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5,
+          "notNull": true
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 30,
+          "notNull": true
+        },
+        "state": {
+          "type": "cds.String",
+          "length": 2,
+          "notNull": true
+        }
+      }
+    },
+    "hana_db_hotel.db.HOTEL.CUSTOMER": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "elements": {
+        "cno": {
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0,
+          "notNull": true
+        },
+        "title": {
+          "type": "cds.String",
+          "length": 7
+        },
+        "firstname": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 40,
+          "notNull": true
+        },
+        "zip": {
+          "type": "cds.String",
+          "length": 5
+        },
+        "address": {
+          "type": "cds.String",
+          "length": 40,
+          "notNull": true
+        }
+      }
+    },
+    "hana_db_hotel.db.HOTEL.HOTEL": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "elements": {
+        "hno": {
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0,
+          "notNull": true
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 50,
+          "notNull": true
+        },
+        "zip": {
+          "type": "cds.String",
+          "length": 5
+        },
+        "address": {
+          "type": "cds.String",
+          "length": 40,
+          "notNull": true
+        }
+      }
+    },
+    "hana_db_hotel.db.HOTEL.RESERVATION": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "elements": {
+        "rno": {
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0,
+          "notNull": true
+        },
+        "cno": {
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0
+        },
+        "hno": {
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0
+        },
+        "type": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "arrival": {
+          "type": "cds.Date",
+          "notNull": true
+        },
+        "departure": {
+          "type": "cds.Date",
+          "notNull": true
+        }
+      }
+    },
+    "hana_db_hotel.db.HOTEL.ROOM": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "elements": {
+        "hno": {
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0,
+          "notNull": true
+        },
+        "type": {
+          "key": true,
+          "type": "cds.String",
+          "length": 6,
+          "notNull": true
+        },
+        "free": {
+          "type": "cds.Decimal",
+          "precision": 3,
+          "scale": 0
+        },
+        "price": {
+          "type": "cds.Decimal",
+          "precision": 6,
+          "scale": 2
+        }
+      }
+    },
+    "hana_db_hotel.db.MyDb": {
+      "kind": "context"
+    },
+    "hana_db_hotel.db.MyDb.Users": {
+      "kind": "entity",
+      "elements": {
+        "id": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "name": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "CatalogService": {
+      "@source": "srv/cat-service.cds",
+      "kind": "service",
+      "@path": "/srv"
+    },
+    "CatalogService.CITY": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "hana_db_hotel.db.HOTEL.CITY"
+          ]
+        }
+      },
+      "elements": {
+        "zip": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5,
+          "notNull": true
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 30,
+          "notNull": true
+        },
+        "state": {
+          "type": "cds.String",
+          "length": 2,
+          "notNull": true
+        }
+      }
+    },
+    "CatalogService.CUSTOMER": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "hana_db_hotel.db.HOTEL.CUSTOMER"
+          ]
+        }
+      },
+      "elements": {
+        "cno": {
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0,
+          "notNull": true
+        },
+        "title": {
+          "type": "cds.String",
+          "length": 7
+        },
+        "firstname": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 40,
+          "notNull": true
+        },
+        "zip": {
+          "type": "cds.String",
+          "length": 5
+        },
+        "address": {
+          "type": "cds.String",
+          "length": 40,
+          "notNull": true
+        }
+      }
+    },
+    "CatalogService.HOTEL": {
+      "kind": "entity",
+      "@UI.FieldGroup#GeneratedGroup.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#GeneratedGroup.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "hno",
+          "Value": {
+            "=": "hno"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "name",
+          "Value": {
+            "=": "name"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "zip",
+          "Value": {
+            "=": "zip"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "address",
+          "Value": {
+            "=": "address"
+          }
+        }
+      ],
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "ID": "GeneratedFacet1",
+          "Label": "General Information",
+          "Target": "@UI.FieldGroup#GeneratedGroup"
+        }
+      ],
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "hno",
+          "Value": {
+            "=": "hno"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "name",
+          "Value": {
+            "=": "name"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "zip",
+          "Value": {
+            "=": "zip"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "address",
+          "Value": {
+            "=": "address"
+          }
+        }
+      ],
+      "projection": {
+        "from": {
+          "ref": [
+            "hana_db_hotel.db.HOTEL.HOTEL"
+          ]
+        }
+      },
+      "elements": {
+        "hno": {
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0,
+          "notNull": true
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 50,
+          "notNull": true
+        },
+        "zip": {
+          "type": "cds.String",
+          "length": 5
+        },
+        "address": {
+          "type": "cds.String",
+          "length": 40,
+          "notNull": true
+        }
+      }
+    },
+    "CatalogService.RESERVATION": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "hana_db_hotel.db.HOTEL.RESERVATION"
+          ]
+        }
+      },
+      "elements": {
+        "rno": {
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0,
+          "notNull": true
+        },
+        "cno": {
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0
+        },
+        "hno": {
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0
+        },
+        "type": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "arrival": {
+          "type": "cds.Date",
+          "notNull": true
+        },
+        "departure": {
+          "type": "cds.Date",
+          "notNull": true
+        }
+      }
+    },
+    "CatalogService.ROOM": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "hana_db_hotel.db.HOTEL.ROOM"
+          ]
+        }
+      },
+      "elements": {
+        "hno": {
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 4,
+          "scale": 0,
+          "notNull": true
+        },
+        "type": {
+          "key": true,
+          "type": "cds.String",
+          "length": 6,
+          "notNull": true
+        },
+        "free": {
+          "type": "cds.Decimal",
+          "precision": 3,
+          "scale": 0
+        },
+        "price": {
+          "type": "cds.Decimal",
+          "precision": 6,
+          "scale": 2
+        }
+      }
+    },
+    "CatalogService.Users": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "hana_db_hotel.db.MyDb.Users"
+          ]
+        }
+      },
+      "elements": {
+        "id": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "name": {
+          "type": "cds.String"
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v5.1.2",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}

@@ -1,0 +1,34 @@
+{
+    "requires": {
+      "[hybrid]": {
+        "db": {
+          "binding": {
+            "type": "cf",
+            "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
+            "org": "54928535trial",
+            "space": "dev",
+            "instance": "hana_db_hotel-db",
+            "key": "hana_db_hotel-db-key",
+            "resolved": false
+          },
+          "kind": "hana-cloud",
+          "vcap": {
+            "name": "db"
+          }
+        },
+        "custom-service:hana_db_hotel-db-HOTEL": {
+          "binding": {
+            "type": "cf",
+            "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
+            "org": "54928535trial",
+            "space": "dev",
+            "instance": "hana_db_hotel-db-HOTEL",
+            "resolved": false
+          },
+          "vcap": {
+            "name": "custom-service:hana_db_hotel-db-HOTEL"
+          }
+        }
+      }
+    }
+}

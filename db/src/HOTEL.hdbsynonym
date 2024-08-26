@@ -1,0 +1,32 @@
+{
+    "hana_db_hotel.db::HOTEL.CITY": {
+        "target": {
+            "object":"CITY",
+            "schema":"HOTEL"
+        }
+    },
+    "hana_db_hotel.db::HOTEL.CUSTOMER": {
+        "target": {
+            "object":"CUSTOMER",
+            "schema":"HOTEL"
+        }
+    },
+    "hana_db_hotel.db::HOTEL.HOTEL": {
+        "target": {
+            "object":"HOTEL",
+            "schema":"HOTEL"
+        }
+    },
+    "hana_db_hotel.db::HOTEL.RESERVATION": {
+        "target": {
+            "object":"RESERVATION",
+            "schema":"HOTEL"
+            }
+        },
+    "hana_db_hotel.db::HOTEL.ROOM": {
+        "target": {
+            "object":"ROOM",
+            "schema":"HOTEL"
+        }
+    }
+}

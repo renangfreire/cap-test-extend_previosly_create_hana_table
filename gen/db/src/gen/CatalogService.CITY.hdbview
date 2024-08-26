@@ -1,0 +1,5 @@
+VIEW CatalogService_CITY AS SELECT
+  CITY_0.zip,
+  CITY_0.name,
+  CITY_0.state
+FROM hana_db_hotel_db_HOTEL_CITY AS CITY_0

@@ -1,0 +1,6 @@
+VIEW CatalogService_ROOM AS SELECT
+  ROOM_0.hno,
+  ROOM_0.type,
+  ROOM_0.free,
+  ROOM_0.price
+FROM hana_db_hotel_db_HOTEL_ROOM AS ROOM_0
